@@ -1,0 +1,8 @@
+framework:
+  smser:
+    transports:
+      async:
+        dns:
+          "%env(SMSER_DSN)%"
+    routing:
+      'App\Message\AsyncMessageInterface': async

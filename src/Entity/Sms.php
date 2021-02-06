@@ -17,34 +17,23 @@ class Sms
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $sms_idcontact;
-
-    /**
+       /**
      * @ORM\Column(type="string", length=190, nullable=true)
      */
     private $sms_contain;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Contact::class, inversedBy="smsMessages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $contact;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getSmsIdcontact(): ?int
-    {
-        return $this->sms_idcontact;
-    }
-
-    public function setSmsIdcontact(int $sms_idcontact): self
-    {
-        $this->sms_idcontact = $sms_idcontact;
-
-        return $this;
-    }
-
-    public function getSmsContain(): ?string
+     public function getSmsContain(): ?string
     {
         return $this->sms_contain;
     }
@@ -52,6 +41,18 @@ class Sms
     public function setSmsContain(?string $sms_contain): self
     {
         $this->sms_contain = $sms_contain;
+
+        return $this;
+    }
+
+    public function getContact(): ?Contact
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?Contact $contact): self
+    {
+        $this->contact = $contact;
 
         return $this;
     }
